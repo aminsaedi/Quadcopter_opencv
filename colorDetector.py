@@ -6,8 +6,7 @@ from robot import Thing
 
 class ColorDetector:
     def __init__(self, filename):
-        self.colors = {"yellow": ((0, 0, 0), (0, 0, 0)), "green": ((0, 0, 0), (0, 0, 0)), "blue": ((0, 0, 0), (0, 0, 0)),
-                       "pink": ((0, 0, 0), (0, 0, 0))}
+        self.colors = {"blue": ((0, 0, 0), (0, 0, 0))}
         self.file = filename
 
     def load_colors(self):
@@ -79,10 +78,10 @@ class ColorDetector:
                     cnt = component[0]
                     currentHierarchy = component[1]
                     x, y, w, h = cv2.boundingRect(cnt)
-                    if currentHierarchy[3] < 0 and w * h > 100:
+                    if currentHierarchy[3] < 0 and w * h > 8000:
                         image = cv2.rectangle(
                             image, (x, y), (x + w, y + h), (100, 200, 100))
-                        image = cv2.circle(image, (x + w, y + h), x, (200.200,200))
+                        image = cv2.circle(image, (x+(w/2), y+(h/2)), w, (0, 200, 0), 5)
                         image = cv2.putText(image, col, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5,
                                             (100, 200, 100), 3, cv2.LINE_AA)
                         temp = Thing(x, y, w, h, col)
