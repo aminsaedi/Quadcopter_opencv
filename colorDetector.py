@@ -78,12 +78,13 @@ class ColorDetector:
                     cnt = component[0]
                     currentHierarchy = component[1]
                     x, y, w, h = cv2.boundingRect(cnt)
-                    if currentHierarchy[3] < 0 and w * h > 8000:
+                    if currentHierarchy[3] < 0 and w * h > 3000:
                         image = cv2.rectangle(
                             image, (x, y), (x + w, y + h), (100, 200, 100))
                         image = cv2.circle(image, (x+(w/2), y+(h/2)), w, (0, 200, 0), 5)
                         image = cv2.putText(image, col, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5,
                                             (100, 200, 100), 3, cv2.LINE_AA)
+                        print w * h
                         temp = Thing(x, y, w, h, col)
                         things.append(temp)
         return things
