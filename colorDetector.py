@@ -48,7 +48,7 @@ class ColorDetector:
                                 cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 1)
                 cv2.imshow("calibrate color", image)
                 cv2.imshow("hsv", hsv)
-                key = cv2.waitKey(1) & 0xFF
+                key = cv2.waitKey(1) & 0xFFnn
                 if key == 27:
                     self.colors[col] = (lower, upper)
                     break
